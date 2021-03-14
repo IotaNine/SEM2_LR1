@@ -1,32 +1,36 @@
-//
-// Created by pcb06 on 16.02.21.
-//
-
 #include "Vector.h"
 #include <iostream>
 
 
 //default constructor for 10 elements
-Vector::Vector() : n(10)
+Vector::Vector()
 {
+    f = 0;
+    n = 10;
     value = new int[n];
 }
 
 //vector replication
-Vector::Vector(const Vector &other) : n(other.n)
+Vector::Vector(const Vector& other)
 {
-    if (other.n != nullptr)
+    f = other.f;
+    n = other.n;
+    if (other.value != nullptr)
     {
+        value = new int[n];
         for (int i = 0; i < other.n; i++)
         {
-            value = other.value;
+            value[i] = other.value[i];
         }
     }
 }
 
 //constructor with parameters
-Vector::Vector(const int &n_, unsigned int &m_) : n(n_), m(m_)
+Vector::Vector(const int& n_, unsigned int& m_)
 {
+    n = n_;
+    m = m_;
+    f = n;
     value = new int[n];
     for (int i = 0; i < n; i++)
     {
@@ -35,12 +39,12 @@ Vector::Vector(const int &n_, unsigned int &m_) : n(n_), m(m_)
 }
 
 //operator "="
-Vector& Vector::operator=(const Vector &other)
+Vector& Vector::operator=(const Vector& other)
 {
-    if (other.n != nullptr)
+    if (other.value != nullptr)
     {
         n = other.n;
-        delete [] value;
+        delete[] value;
         value = new int[n];
         for (int i = 0; i < n; i++)
         {
@@ -53,14 +57,11 @@ Vector& Vector::operator=(const Vector &other)
 //destructor
 Vector::~Vector()
 {
-    delete [] value;
+    delete[] value;
 }
 
 //operator "[]"
-Vector& Vector::operator[](unsigned int &index)
+int& Vector::operator[](unsigned int& index)
 {
-
+        return value[index];
 }
-
-
-
