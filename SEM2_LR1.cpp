@@ -36,7 +36,7 @@ int main()
     std::cout << "Position of element '0': " << G.find(0) << std::endl;
     G.push_back(7);
     std::cout << G;
-    std::cout << "Position of element: " << G.find(7) << std::endl;
+    std::cout << "Position of element '7': " << G.find(7) << std::endl;
     G.replace(7, 122);;
     std::cout << G;
 }
