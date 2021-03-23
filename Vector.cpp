@@ -31,7 +31,7 @@ Vector::Vector(const int& space_, unsigned int& e)
     space = space_;
     n = space;
     value = new int[n];
-    for (int i = 0; i < space; i++)
+    for (int i = 0; i < n; i++)
     {
         value[i] = e;
     }
@@ -40,14 +40,17 @@ Vector::Vector(const int& space_, unsigned int& e)
 //operator "="
 Vector& Vector::operator=(const Vector& other)
 {
-    if (this != &other and other.value != nullptr)
+    if (this != &other)
     {
         space = other.space;
         delete[] value;
         value = new int[space];
-        for (int i = 0; i < space; i++)
+        if(other.value != nullptr)
         {
-            value[i] = other.value[i];
+            for (int i = 0; i < n; i++)
+            {
+                value[i] = other.value[i];
+            }
         }
     }
     return *this;
@@ -91,12 +94,11 @@ void Vector::push_back(const int& element)
     else
     {
         int* temp_value = new int[space + 10];
-        for (unsigned int i = 0; i < space; i++)
+        for (unsigned int i = 0; i < n; i++)
         {
             temp_value[i] = value[i];
         }
-        int* buff = value;
-        delete[] buff;
+        delete[] value;
         value = temp_value;
         value[n] = element;
         space += 10;
