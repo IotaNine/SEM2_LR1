@@ -7,7 +7,7 @@ Vector::Vector()
 {
     n = 0;
     space = 10;
-    value = new int[n];
+    value = new int[space];
 }
 
 //vector replication
@@ -15,9 +15,9 @@ Vector::Vector(const Vector& other)
 {
     n = other.n;
     space = other.space;
+    value = new int[n];
     if (other.value != nullptr)
     {
-        value = new int[n];
         for (int i = 0; i < other.n; i++)
         {
             value[i] = other.value[i];
@@ -43,6 +43,7 @@ Vector& Vector::operator=(const Vector& other)
     if (this != &other)
     {
         space = other.space;
+        n = other.n;
         delete[] value;
         value = new int[space];
         if(other.value != nullptr)
@@ -111,7 +112,7 @@ void Vector::replace(const int& oldValue, const int& newValue)
 {
     bool isReplaced = false;
     unsigned int i = 0;
-    while (!isReplaced or i < n)
+    while (!isReplaced and i < n)
     {
         if (value[i] == oldValue)
         {
